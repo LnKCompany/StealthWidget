@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">StealthWidget</string>
+    <string name="action_settings">Settings</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="menu1">1x1</string>
+    <string name="menu2">1x2</string>
+    <string name="menu3">2x1</string>
+    <string name="menu4">1x4</string>
+    <string name="menu5">4x1</string>
+    <string name="menu6">4x4</string>
+    <string name="menu7">도움말</string>
+    <string name="title_activity_stealth_setting">StealthSetting</string>
+
+</resources>
