@@ -76,6 +76,7 @@ public class StealthMain extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+        //메뉴를 선택합니다.
     }
 
 }
