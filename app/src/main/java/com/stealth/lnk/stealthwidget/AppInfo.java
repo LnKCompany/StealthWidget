@@ -7,7 +7,7 @@ import java.text.Collator;
 import java.util.Comparator;
 
 /**
- * Created by ij kim on 2015-11-10.
+ * Created by injung on 2015-11-10.
  */
 public class AppInfo {
     public static interface AppFilter {

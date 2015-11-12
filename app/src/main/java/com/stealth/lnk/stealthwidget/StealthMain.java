@@ -19,6 +19,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.stealth.lnk.stealthwidget.DB.DBHelper;
+
 public class StealthMain extends AppCompatActivity {
 
     @Override
@@ -27,6 +29,9 @@ public class StealthMain extends AppCompatActivity {
         setContentView(R.layout.activity_stealth_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        DBHelper dbHelper = new DBHelper(this);
+        dbHelper.close();
 
     }
     //이부분이 메뉴 추가해주는 부분
@@ -50,7 +55,11 @@ public class StealthMain extends AppCompatActivity {
             //menu1 은 1x1 의 사이즈
             Toast.makeText(this, "1x1가 터치되었습니다", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(StealthMain.this, StealthSetting.class);
+
+            //Layout 정보 저장
             intent.putExtra("selectMenu",R.layout.activity_stealth1_1);
+            //Layout DB연결 정보 저장
+            intent.putExtra("layoutName", "1n1");
 
             startActivity(intent);
             //액티비티 하나 추가해서 거기에 putExtrea 로 r.id.menu1 같이 넘겨줘

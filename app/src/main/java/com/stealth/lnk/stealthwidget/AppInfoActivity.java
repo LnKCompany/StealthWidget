@@ -1,8 +1,14 @@
 package com.stealth.lnk.stealthwidget;
 
 import com.stealth.lnk.stealthwidget.AppInfo.AppFilter;
+import com.stealth.lnk.stealthwidget.DB.DBHelper;
+import com.stealth.lnk.stealthwidget.DB.LayoutDAO;
+import com.stealth.lnk.stealthwidget.DB.LayoutDTO;
+import com.stealth.lnk.stealthwidget.DB.SettingDAO;
+import com.stealth.lnk.stealthwidget.DB.SettingDTO;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -27,12 +33,8 @@ import java.util.List;
 
 public class AppInfoActivity extends AppCompatActivity {
 
-//    DBHelper dbHelper = new DBHelper(this); //DB인스턴스 생성
-//    SettingDTO settingDTO;
-//    SettingDAO settingDAO;
-
     private static final String TAG = AppInfoActivity.class.getSimpleName();
-    // �޴� KEY
+
     private final int MENU_DOWNLOAD = 0;
     private final int MENU_ALL = 1;
     private int MENU_MODE = MENU_DOWNLOAD;
@@ -43,12 +45,15 @@ public class AppInfoActivity extends AppCompatActivity {
     private ListView mListView = null;
     private IAAdapter mAdapter = null;
 
+    private DBHelper dbHelper = new DBHelper(this);
+    Intent intent;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_info);
+        intent = getIntent();
 
         mLoadingContainer = findViewById(R.id.loading_container);
         mListView = (ListView) findViewById(R.id.listView1);
@@ -66,16 +71,24 @@ public class AppInfoActivity extends AppCompatActivity {
                 String app_name = ((TextView) view.findViewById(R.id.app_name)).getText().toString();
                 String package_name = ((TextView) view.findViewById(R.id.app_package)).getText().toString();
 
-//                settingDAO = new SettingDAO(dbHelper);
-//                settingDTO = new SettingDTO();
-//
-//                settingDTO.setApp_name(app_name);
-//                settingDTO.setApp_package(package_name);
-//                settingDTO.setLayout_seq(0);
-//
-//                settingDAO.insertSetting(settingDTO);
+                //DB연결
+                LayoutDAO layoutDAO = new LayoutDAO(dbHelper);
+                LayoutDTO layoutDTO = new LayoutDTO();
+                SettingDAO settingDAO = new SettingDAO(dbHelper);
+                SettingDTO settingDTO = new SettingDTO();
 
-                Toast.makeText(AppInfoActivity.this, package_name, Toast.LENGTH_SHORT).show();
+                layoutDTO.setName(intent.getStringExtra("layoutName"));
+                layoutDTO = layoutDAO.selectLayout(layoutDTO);
+
+                settingDTO.setApp_name(app_name);
+                settingDTO.setApp_package(package_name);
+                settingDTO.setLayout_seq(layoutDTO.getSeq());
+
+                settingDAO.insertSetting(settingDTO);
+
+                Toast.makeText(AppInfoActivity.this, "설정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+
+                finish();
             }
         });
     }
