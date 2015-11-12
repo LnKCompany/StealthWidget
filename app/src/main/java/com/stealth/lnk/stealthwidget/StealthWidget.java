@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
-import com.stealth.lnk.stealthwidget.DB.LayoutDAO;
-import com.stealth.lnk.stealthwidget.DB.LayoutDTO;
 import com.stealth.lnk.stealthwidget.DB.SettingDAO;
 import com.stealth.lnk.stealthwidget.DB.SettingDTO;
 
@@ -28,42 +26,31 @@ public class StealthWidget extends AppWidgetProvider {
 
             int widgetId = appWidgetIds[i];
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
-            Intent intent = new Intent(context, StealthMain.class);
 
             DBHelper dbHelper = new DBHelper(context);
             //DB연결
-            LayoutDAO layoutDAO = new LayoutDAO(dbHelper);
-            LayoutDTO layoutDTO = new LayoutDTO();
             SettingDAO settingDAO = new SettingDAO(dbHelper);
-            SettingDTO saveDto = new SettingDTO();
-            ArrayList<SettingDTO> settingDTOList;
+            SettingDTO settingDTO = new SettingDTO();
 
-            layoutDTO.setName("1n1");
-            layoutDTO = layoutDAO.selectLayout(layoutDTO);
+            settingDTO.setName("Red");
+            settingDTO = settingDAO.selectOne(settingDTO);
+            Intent intent = null;
 
-            saveDto.setLayout_seq(layoutDTO.getSeq());
-            settingDTOList = settingDAO.selectSettingList(saveDto);
+            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth_widget);
 
-            if(settingDTOList.isEmpty()) {
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-                RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth_widget);
-                remoteView.setOnClickPendingIntent(R.id.app01, pendingIntent);
-                appWidgetManager.updateAppWidget(widgetId, remoteView);
+            if(settingDTO.getApp_name().equals("")) {
+                //앱 설정이 되지 않았을 경우 메인으로 연결
+                intent = new Intent(context, StealthMain.class);
             } else {
-                for(int j = 0 ; j < settingDTOList.size() ; j++ ) {
-                    saveDto = settingDTOList.get(0);
-            RemoteViews remoteView = new RemoteViews(context.getPackageName(),R.layout.stealth_widget);
-            Intent intent1 = context.getPackageManager().getLaunchIntentForPackage(saveDto.getApp_package());
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, 0);
-            remoteView.setOnClickPendingIntent(R.id.app01, pendingIntent);
+                intent = context.getPackageManager().getLaunchIntentForPackage(settingDTO.getApp_package());
+            }
 
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            remoteView.setOnClickPendingIntent(R.id.app01, pendingIntent);
             /**
              * 위젯 업데이트
              */
             appWidgetManager.updateAppWidget(widgetId, remoteView);
-                }
-            }
 
         }
 
@@ -82,7 +69,7 @@ public class StealthWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-
     }
+
 }
 

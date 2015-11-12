@@ -2,8 +2,6 @@ package com.stealth.lnk.stealthwidget;
 
 import com.stealth.lnk.stealthwidget.AppInfo.AppFilter;
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
-import com.stealth.lnk.stealthwidget.DB.LayoutDAO;
-import com.stealth.lnk.stealthwidget.DB.LayoutDTO;
 import com.stealth.lnk.stealthwidget.DB.SettingDAO;
 import com.stealth.lnk.stealthwidget.DB.SettingDTO;
 
@@ -69,22 +67,19 @@ public class AppInfoActivity extends AppCompatActivity {
                                     long id) {
                 // TODO Auto-generated method stub
                 String app_name = ((TextView) view.findViewById(R.id.app_name)).getText().toString();
-                String package_name = ((TextView) view.findViewById(R.id.app_package)).getText().toString();
+                String app_package = ((TextView) view.findViewById(R.id.app_package)).getText().toString();
 
                 //DB연결
-                LayoutDAO layoutDAO = new LayoutDAO(dbHelper);
-                LayoutDTO layoutDTO = new LayoutDTO();
                 SettingDAO settingDAO = new SettingDAO(dbHelper);
                 SettingDTO settingDTO = new SettingDTO();
 
-                layoutDTO.setName(intent.getStringExtra("layoutName"));
-                layoutDTO = layoutDAO.selectLayout(layoutDTO);
-
+                //intent값 저장 및 insert실행
+                String colorName = intent.getStringExtra("menu");
+                settingDTO.setName(colorName);
                 settingDTO.setApp_name(app_name);
-                settingDTO.setApp_package(package_name);
-                settingDTO.setLayout_seq(layoutDTO.getSeq());
+                settingDTO.setApp_package(app_package);
 
-                settingDAO.insertSetting(settingDTO);
+                settingDAO.update(settingDTO);
 
                 Toast.makeText(AppInfoActivity.this, "설정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
 

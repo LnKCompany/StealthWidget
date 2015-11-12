@@ -5,10 +5,9 @@ package com.stealth.lnk.stealthwidget.DB;
  */
 public class SettingDTO {
     int seq;
+    String name;
     String app_name;
     String app_package;
-    String app_icon;
-    int layout_seq;
 
     public int getSeq() {
         return seq;
@@ -16,6 +15,14 @@ public class SettingDTO {
 
     public void setSeq(int seq) {
         this.seq = seq;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getApp_name() {
@@ -42,11 +49,5 @@ public class SettingDTO {
         this.app_icon = app_icon;
     }
 
-    public int getLayout_seq() {
-        return layout_seq;
-    }
-
-    public void setLayout_seq(int layout_seq) {
-        this.layout_seq = layout_seq;
-    }
+    String app_icon;
 }

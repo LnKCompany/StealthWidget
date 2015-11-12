@@ -17,18 +17,18 @@ public class SettingDAO {
         this.dbHelper = dbHelper;
     }
 
-    public SettingDTO selectSetting(SettingDTO dto) {
+    public SettingDTO selectOne(SettingDTO dto) {
         sqlDB = dbHelper.getReadableDatabase();
         SettingDTO resultDTO = new SettingDTO();
         Cursor cursor;
-        cursor = sqlDB.rawQuery("select * from setting where layout_seq = " + dto.getLayout_seq() + ";", null);
+        cursor = sqlDB.rawQuery("select * from setting where name = '" + dto.getName() + "';", null);
 
         while(cursor.moveToNext()) {
             resultDTO.setSeq(cursor.getInt(0));
-            resultDTO.setApp_name(cursor.getString(1));
-            resultDTO.setApp_package(cursor.getString(2));
-            resultDTO.setApp_icon(cursor.getString(3));
-            resultDTO.setLayout_seq(cursor.getInt(4));
+            resultDTO.setName(cursor.getString(1));
+            resultDTO.setApp_name(cursor.getString(2));
+            resultDTO.setApp_package(cursor.getString(3));
+            resultDTO.setApp_icon(cursor.getString(4));
         }
 
         cursor.close();
@@ -37,19 +37,19 @@ public class SettingDAO {
         return resultDTO;
     }
 
-    public ArrayList<SettingDTO> selectSettingList(SettingDTO dto) {
+    public ArrayList<SettingDTO> selectList(SettingDTO dto) {
         sqlDB = dbHelper.getReadableDatabase();
         ArrayList<SettingDTO> resultDTO = new ArrayList<SettingDTO>();
         SettingDTO saveDto = new SettingDTO();
         Cursor cursor;
-        cursor = sqlDB.rawQuery("select * from setting where layout_seq = "+ dto.getLayout_seq() + ";", null);
+        cursor = sqlDB.rawQuery("select * from setting where name = '"+ dto.getName() + "';", null);
 
         while(cursor.moveToNext()) {
             saveDto.setSeq(cursor.getInt(0));
-            saveDto.setApp_name(cursor.getString(1));
-            saveDto.setApp_package(cursor.getString(2));
-            saveDto.setApp_icon(cursor.getString(3));
-            saveDto.setLayout_seq(cursor.getInt(4));
+            saveDto.setName(cursor.getString(1));
+            saveDto.setApp_name(cursor.getString(2));
+            saveDto.setApp_package(cursor.getString(3));
+            saveDto.setApp_icon(cursor.getString(4));
 
             resultDTO.add(saveDto);
         }
@@ -60,29 +60,29 @@ public class SettingDAO {
         return resultDTO;
     }
 
-    public void insertSetting(SettingDTO dto) {
+    public void insert(SettingDTO dto) {
         sqlDB = dbHelper.getWritableDatabase();
-        sqlDB.execSQL("insert into setting(app_name, app_package, layout_seq) values( '" +
-                dto.getApp_name() + "', '" +
-//                1. 아이콘도 저장할 때
-//                dto.getApp_package() + "', '" +
-//                dto.getApp_icon() + "', " +
-
-//                2. 아이콘은 빼고 저장할 때
-                dto.getApp_package() + "', " +
-                dto.getLayout_seq() + ");");
+        //구현 필요없음
         sqlDB.close();
     }
 
-    public void updateSetting(SettingDTO dto) {
+    public void update(SettingDTO dto) {
         sqlDB = dbHelper.getWritableDatabase();
-        sqlDB.execSQL("");
+        sqlDB.execSQL("update setting set app_name = '" +
+                dto.getApp_name() +
+                "', app_package = '" +
+                dto.getApp_package() +
+                "', app_icon = '" +
+                dto.getApp_icon() +
+                "' where name = '" +
+                dto.getName() +
+                "';");
         sqlDB.close();
     }
 
-    public void deleteSetting(SettingDTO dto) {
+    public void delete(SettingDTO dto) {
         sqlDB = dbHelper.getWritableDatabase();
-        sqlDB.execSQL("");
+        //구현 필요없음
         sqlDB.close();
     }
 }

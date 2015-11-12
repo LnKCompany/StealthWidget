@@ -11,15 +11,16 @@
     tools:context="com.stealth.lnk.stealthwidget.StealthSetting">
 
     <TextView
+        android:id="@+id/setting_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="변경하시려면 설정을 터치하세요" />
+        android:text="변경하시려면 버튼을 터치하세요" />
 
     <Button android:id="@+id/app01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ffffffff"
-        android:text="설정하기"
+        android:text="변경하기"
         />
 
 </LinearLayout>

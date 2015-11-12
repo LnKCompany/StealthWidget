@@ -11,11 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
-import com.stealth.lnk.stealthwidget.DB.LayoutDAO;
-import com.stealth.lnk.stealthwidget.DB.LayoutDTO;
 import com.stealth.lnk.stealthwidget.DB.SettingDAO;
 import com.stealth.lnk.stealthwidget.DB.SettingDTO;
 
@@ -23,35 +22,32 @@ import java.util.ArrayList;
 
 public class StealthSetting extends AppCompatActivity implements View.OnClickListener{
 
-    String layoutName;
+    String colorName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();//get 부분
-        //선택 레이아웃의 id저장
-        //int activity = intent.getExtras().getInt("selectMenu");
-        //선택 레이아웃의 이름 저장
-        layoutName = intent.getStringExtra("layoutName");
+        colorName = intent.getStringExtra("menu");
 
         DBHelper dbHelper = new DBHelper(this);
         //DB연결
-        LayoutDAO layoutDAO = new LayoutDAO(dbHelper);
-        LayoutDTO layoutDTO = new LayoutDTO();
         SettingDAO settingDAO = new SettingDAO(dbHelper);
-        SettingDTO saveDto = new SettingDTO();
-        ArrayList<SettingDTO> settingDTOList;
+        SettingDTO settingDTO = new SettingDTO();
 
-        layoutDTO.setName(layoutName);
-        layoutDTO = layoutDAO.selectLayout(layoutDTO);
+        settingDTO.setName(colorName);
+        settingDTO = settingDAO.selectOne(settingDTO);
 
-        saveDto.setLayout_seq(layoutDTO.getSeq());
-        settingDTOList = settingDAO.selectSettingList(saveDto);
+        if(settingDTO.getApp_name().equals("")) {
+            //설정된 내용이 없다면 텍스트 변경
+            //나중에 설정하세요! 아이콘으로 변경해야함.
+        } else {
+//            설정되어있다면 버튼에 아이콘 모양을 넣어야함
+        }
 
         setContentView(R.layout.activity_stealth_setting);
 
-        String menu = intent.getStringExtra("menu");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -111,6 +107,8 @@ public class StealthSetting extends AppCompatActivity implements View.OnClickLis
 
         startActivity(intent);
 
+        finish();
+
         return super.onOptionsItemSelected(item);
         //메뉴를 선택합니다.
     }
@@ -121,7 +119,7 @@ public class StealthSetting extends AppCompatActivity implements View.OnClickLis
         // TODO Auto-generated method stub
         Intent intent = new Intent(this, AppInfoActivity.class);
         //선택 레이아웃의 이름 저장
-        intent.putExtra("layoutName",layoutName);
+        intent.putExtra("menu",colorName);
 
         startActivity(intent);
         finish();
