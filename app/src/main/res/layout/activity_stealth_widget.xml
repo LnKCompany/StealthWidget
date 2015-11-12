@@ -15,6 +15,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/stealth1_1" />
+    <include layout="@layout/stealth_widget" />
 
 </android.support.design.widget.CoordinatorLayout>

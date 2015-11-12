@@ -5,9 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Button;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
 import com.stealth.lnk.stealthwidget.DB.LayoutDAO;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Implementation of App Widget functionality.
  */
-public class Stealth1_1 extends AppWidgetProvider {
+public class StealthWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -49,13 +47,13 @@ public class Stealth1_1 extends AppWidgetProvider {
             if(settingDTOList.isEmpty()) {
                 PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-                RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth1_1);
+                RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth_widget);
                 remoteView.setOnClickPendingIntent(R.id.app01, pendingIntent);
                 appWidgetManager.updateAppWidget(widgetId, remoteView);
             } else {
                 for(int j = 0 ; j < settingDTOList.size() ; j++ ) {
                     saveDto = settingDTOList.get(0);
-            RemoteViews remoteView = new RemoteViews(context.getPackageName(),R.layout.stealth1_1);
+            RemoteViews remoteView = new RemoteViews(context.getPackageName(),R.layout.stealth_widget);
             Intent intent1 = context.getPackageManager().getLaunchIntentForPackage(saveDto.getApp_package());
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, 0);
             remoteView.setOnClickPendingIntent(R.id.app01, pendingIntent);

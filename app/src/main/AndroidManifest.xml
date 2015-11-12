@@ -19,14 +19,14 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Stealth1_1" >
+        <receiver android:name=".StealthWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/stealth1_1_info" />
+                android:resource="@xml/stealth_widget_setting" />
         </receiver>
 
         <activity
