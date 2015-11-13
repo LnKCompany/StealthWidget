@@ -22,6 +22,7 @@
         <receiver android:name=".StealthWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.stealth.lnk.updatewidget" />
             </intent-filter>
 
             <meta-data

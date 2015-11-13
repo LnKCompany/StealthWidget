@@ -5,6 +5,8 @@ import com.stealth.lnk.stealthwidget.DB.DBHelper;
 import com.stealth.lnk.stealthwidget.DB.SettingDAO;
 import com.stealth.lnk.stealthwidget.DB.SettingDTO;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -82,6 +84,11 @@ public class AppInfoActivity extends AppCompatActivity {
                 settingDAO.update(settingDTO);
 
                 Toast.makeText(AppInfoActivity.this, "설정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+
+                //Broadcast 보내기 -> StealthWidget에서 onReceive를 실행시킴
+                //액션은 사용자 정의 액션. manifaests에서 설정해줘야 함.
+                Intent intent = new Intent("com.stealth.lnk.updatewidget");
+                sendBroadcast(intent);
 
                 finish();
             }

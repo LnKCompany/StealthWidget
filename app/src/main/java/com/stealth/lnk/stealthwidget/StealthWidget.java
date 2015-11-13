@@ -3,8 +3,10 @@ package com.stealth.lnk.stealthwidget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
@@ -25,6 +27,7 @@ public class StealthWidget extends AppWidgetProvider {
         for (int i = 0; i < N; i++) {
 
             int widgetId = appWidgetIds[i];
+
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
 
             DBHelper dbHelper = new DBHelper(context);
@@ -52,8 +55,18 @@ public class StealthWidget extends AppWidgetProvider {
              */
             appWidgetManager.updateAppWidget(widgetId, remoteView);
 
+            dbHelper.close();
         }
 
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        AppWidgetManager manager = AppWidgetManager.getInstance(context);
+        this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, StealthWidget.class)));
+
+        super.onReceive(context, intent);
     }
 
 
@@ -69,6 +82,7 @@ public class StealthWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
+
     }
 
 }
