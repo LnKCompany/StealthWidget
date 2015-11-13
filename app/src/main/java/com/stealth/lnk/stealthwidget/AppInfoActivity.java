@@ -87,7 +87,11 @@ public class AppInfoActivity extends AppCompatActivity {
 
                 //Broadcast 보내기 -> StealthWidget에서 onReceive를 실행시킴
                 //액션은 사용자 정의 액션. manifaests에서 설정해줘야 함.
-                Intent intent = new Intent("com.stealth.lnk.updatewidget");
+
+                String action = "com.stealth.lnk.updatewidget." +colorName ;
+                Log.e("색깔" , colorName);
+                Log.e("action" , action);
+                Intent intent = new Intent(action);
                 sendBroadcast(intent);
 
                 finish();

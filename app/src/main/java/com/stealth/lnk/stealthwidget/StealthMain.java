@@ -64,13 +64,13 @@ public class StealthMain extends AppCompatActivity {
 
         }else if(id==R.id.menu5){
             // 4x1
-            Toast.makeText(this, "White 메뉴가 터치되었습니다", Toast.LENGTH_SHORT).show();
-            color="White";
+            Toast.makeText(this, "Yellow 메뉴가 터치되었습니다", Toast.LENGTH_SHORT).show();
+            color="Yellow";
 
         }else if(id==R.id.menu6){
             // 4x4
-            Toast.makeText(this, "Yellow 메뉴가 터치되었습니다", Toast.LENGTH_SHORT).show();
-            color="Yellow";
+            Toast.makeText(this, "White 메뉴가 터치되었습니다", Toast.LENGTH_SHORT).show();
+            color="White";
 
         }else if(id==R.id.menu7){
             // 도움말

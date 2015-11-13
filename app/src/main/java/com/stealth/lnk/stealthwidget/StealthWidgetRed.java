@@ -6,19 +6,16 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
 import com.stealth.lnk.stealthwidget.DB.SettingDAO;
 import com.stealth.lnk.stealthwidget.DB.SettingDTO;
 
-import java.util.ArrayList;
-
 /**
  * Implementation of App Widget functionality.
  */
-public class StealthWidget extends AppWidgetProvider {
+public class StealthWidgetRed extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -39,7 +36,7 @@ public class StealthWidget extends AppWidgetProvider {
             settingDTO = settingDAO.selectOne(settingDTO);
             Intent intent = null;
 
-            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth_widget);
+            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth_widget_red);
 
             if(settingDTO.getApp_name().equals("")) {
                 //앱 설정이 되지 않았을 경우 메인으로 연결
@@ -64,7 +61,7 @@ public class StealthWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
 
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
-        this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, StealthWidget.class)));
+        this.onUpdate(context, manager, manager.getAppWidgetIds(new ComponentName(context, StealthWidgetRed.class)));
 
         super.onReceive(context, intent);
     }

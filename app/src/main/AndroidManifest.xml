@@ -19,15 +19,19 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".StealthWidget" >
+        <receiver android:name=".StealthWidgetRed" android:label="빨간색" >
+
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.stealth.lnk.updatewidget" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="com.stealth.lnk.updatewidget.Red" />
+
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/stealth_widget_setting" />
+                android:value="@drawable/stealth_widget_red"
+                android:resource="@xml/stealth_widget_setting_red" />
         </receiver>
 
         <activity
@@ -37,6 +41,73 @@
         </activity>
         <activity android:name=".AppInfoActivity" >
         </activity>
+
+        <receiver android:name=".StealthWidgetGreen" android:label="초록색" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="com.stealth.lnk.updatewidget.Green" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:value="@drawable/stealth_widget_green"
+                android:resource="@xml/stealth_widget_setting_green" />
+        </receiver>
+
+        <receiver android:name=".StealthWidgetBlue" android:label="파란색" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="com.stealth.lnk.updatewidget.Blue" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:value="@drawable/stealth_widget_blue"
+                android:resource="@xml/stealth_widget_setting_blue" />
+        </receiver>
+
+        <receiver android:name=".StealthWidgetPink" android:label="핑크색" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="com.stealth.lnk.updatewidget.Pink" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:value="@drawable/stealth_widget_pink"
+                android:resource="@xml/stealth_widget_setting_pink" />
+        </receiver>
+
+
+        <receiver android:name=".StealthWidgetYellow" android:label="노란색" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="com.stealth.lnk.updatewidget.Yellow" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:value="@drawable/stealth_widget_yellow"
+                android:resource="@xml/stealth_widget_setting_yellow" />
+        </receiver>
+
+
+        <receiver android:name=".StealthWidgetWhite" android:label="하얀색" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="com.stealth.lnk.updatewidget.White" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:value="@drawable/stealth_widget_white"
+                android:resource="@xml/stealth_widget_setting_white" />
+        </receiver>
     </application>
 
 </manifest>
