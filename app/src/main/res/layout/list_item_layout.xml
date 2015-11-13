@@ -14,7 +14,7 @@
         android:layout_height="@android:dimen/app_icon_size"
         android:layout_marginRight="10dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/stealth_widget_icon" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
