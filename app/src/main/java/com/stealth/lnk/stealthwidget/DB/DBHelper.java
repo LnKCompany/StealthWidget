@@ -23,14 +23,14 @@ public class DBHelper  extends SQLiteOpenHelper {
                 "name text, " +
                 "app_name text, " +
                 "app_package text, " +
-                "app_icon text );");
+                "opacity text );");
 
-        db.execSQL("INSERT INTO setting(name, app_name, app_package) values('Red', '', '')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package) values('Green', '', '')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package) values('Blue', '', '')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package) values('Pink', '', '')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package) values('White', '', '')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package) values('Yellow', '', '')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Red', '', '', '9e')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Green', '', '', '77')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Blue', '', '', 'bd')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Pink', '', '', '5a')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('White', '', '', '29')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Yellow', '', '', '66')");
 
     }
 

@@ -8,6 +8,15 @@ public class SettingDTO {
     String name;
     String app_name;
     String app_package;
+    String opacity;
+
+    public String getOpacity() {
+        return opacity;
+    }
+
+    public void setOpacity(String opacity) {
+        this.opacity = opacity;
+    }
 
     public int getSeq() {
         return seq;
@@ -40,14 +49,4 @@ public class SettingDTO {
     public void setApp_package(String app_package) {
         this.app_package = app_package;
     }
-
-    public String getApp_icon() {
-        return app_icon;
-    }
-
-    public void setApp_icon(String app_icon) {
-        this.app_icon = app_icon;
-    }
-
-    String app_icon;
 }
