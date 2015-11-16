@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,13 +40,6 @@ public class StealthSetting extends AppCompatActivity implements View.OnClickLis
         settingDTO.setName(colorName);
         settingDTO = settingDAO.selectOne(settingDTO);
 
-        if(settingDTO.getApp_name().equals("")) {
-            //설정된 내용이 없다면 텍스트 변경
-            //나중에 설정하세요! 아이콘으로 변경해야함.
-        } else {
-//            설정되어있다면 버튼에 아이콘 모양을 넣어야함
-        }
-
         setContentView(R.layout.activity_stealth_setting);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -54,6 +48,12 @@ public class StealthSetting extends AppCompatActivity implements View.OnClickLis
         //버튼의 값을 받아 리스트로 연결한다.
         Button btn1 = (Button)findViewById(R.id.app01);
         btn1.setOnClickListener(this);
+
+        if(settingDTO.getApp_name().length() == 0) {
+            //설정된 내용이 없다면 텍스트 변경
+            TextView textView = (TextView)findViewById(R.id.setting_text);
+            textView.setText("설정하려면 아래 버튼을 터치하세요.");
+        }
 
     }
 
@@ -70,7 +70,6 @@ public class StealthSetting extends AppCompatActivity implements View.OnClickLis
             //menu1 은 1x1 의 사이즈
             Toast.makeText(this, "Red 메뉴가 터치되었습니다", Toast.LENGTH_SHORT).show();
             color="Red";
-            //액티비티 하나 추가해서 거기에 putExtrea 로 r.id.menu1 같이 넘겨줘
 
         }else if(id==R.id.menu2){
             // 1x2

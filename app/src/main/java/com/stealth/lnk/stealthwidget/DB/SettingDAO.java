@@ -29,7 +29,7 @@ public class SettingDAO {
             resultDTO.setName(cursor.getString(1));
             resultDTO.setApp_name(cursor.getString(2));
             resultDTO.setApp_package(cursor.getString(3));
-            resultDTO.setApp_icon(cursor.getString(4));
+            resultDTO.setOpacity(cursor.getString(4));
         }
 
         cursor.close();
@@ -38,19 +38,20 @@ public class SettingDAO {
         return resultDTO;
     }
 
-    public ArrayList<SettingDTO> selectList(SettingDTO dto) {
+    public ArrayList<SettingDTO> selectList() {
         sqlDB = dbHelper.getReadableDatabase();
         ArrayList<SettingDTO> resultDTO = new ArrayList<SettingDTO>();
         SettingDTO saveDto = new SettingDTO();
         Cursor cursor;
-        cursor = sqlDB.rawQuery("select * from setting where name = '"+ dto.getName() + "';", null);
+        cursor = sqlDB.rawQuery("select * from setting;", null);
 
         while(cursor.moveToNext()) {
+            saveDto = new SettingDTO();
             saveDto.setSeq(cursor.getInt(0));
             saveDto.setName(cursor.getString(1));
             saveDto.setApp_name(cursor.getString(2));
             saveDto.setApp_package(cursor.getString(3));
-            saveDto.setApp_icon(cursor.getString(4));
+            saveDto.setOpacity(cursor.getString(4));
 
             resultDTO.add(saveDto);
         }
@@ -73,12 +74,19 @@ public class SettingDAO {
                 dto.getApp_name() +
                 "', app_package = '" +
                 dto.getApp_package() +
-                "', app_icon = '" +
-                dto.getApp_icon() +
                 "' where name = '" +
                 dto.getName() +
                 "';");
         sqlDB.close();
+    }
+
+    public void updateOpacity(SettingDTO dto) {
+        sqlDB = dbHelper.getWritableDatabase();
+        sqlDB.execSQL("update setting set opacity = '" +
+                dto.getOpacity() +
+                "', where name = '" +
+                dto.getName() +
+                "';");
     }
 
     public void delete(SettingDTO dto) {
