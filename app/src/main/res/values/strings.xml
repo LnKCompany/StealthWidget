@@ -15,5 +15,7 @@
     <string name="loading" >로딩중</string>
     <string name="menu_download" >다운로드</string>
     <string name="menu_all" >전체</string>
-
+    <string name="more_trans">0%</string>
+    <string name="less_trans">50%</string>
+    <string name="cur_trans">100%</string>
 </resources>

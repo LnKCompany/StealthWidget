@@ -7,7 +7,7 @@
     <Button android:id="@+id/app01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#bd0037ff"
+        android:background="#5a0037ff"
         />
 
 
