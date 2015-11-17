@@ -29,8 +29,8 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Green', '', '', '#7704ff00')");
         db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Blue', '', '', '#5a0037ff')");
         db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Pink', '', '', '#5aff0073')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('White', '', '', '#66FFF200')");
-        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Yellow', '', '', '#b9ffffff')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('Yellow', '', '', '#66FFF200')");
+        db.execSQL("INSERT INTO setting(name, app_name, app_package, opacity) values('White', '', '', '#b9ffffff')");
 
     }
 

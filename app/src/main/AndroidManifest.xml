@@ -39,6 +39,11 @@
             android:label="@string/title_activity_stealth_setting"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".StealthHelp"
+            android:label="@string/menu7"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity android:name=".AppInfoActivity" >
         </activity>
 

@@ -1,5 +1,8 @@
 package com.stealth.lnk.stealthwidget;
 
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
 import com.stealth.lnk.stealthwidget.DB.SettingDAO;
@@ -31,9 +35,35 @@ public class StealthMain extends AppCompatActivity {
 
     }
 
+    public void alert(){
+        AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
+        alert_confirm.setMessage("도움말 메뉴를 보시겠습니까?").
+                setCancelable(false).
+                setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 'YES'
+                                Intent intent = new Intent(StealthMain.this, StealthHelp.class);
+                                intent.putExtra("menu", "Help");
+                                startActivity(intent);
+
+                            }
+                        }).setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 'No'
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alert_confirm.create();
+        alert.show();
+    }
     @Override
     public void onResume() {
         super.onResume();
+
 
         DBHelper dbHelper = new DBHelper(this);
 
@@ -49,15 +79,19 @@ public class StealthMain extends AppCompatActivity {
         textViews.add((TextView)findViewById(R.id.white_app));
 
         settingDTOList = settingDAO.selectList();
-
+        int count=0;
         for(SettingDTO dto : settingDTOList) {
             for(TextView text : textViews) {
 //                text.setText(firstText);
                 if(dto.getName().equals(text.getTag().toString())) {
-                    if(dto.getApp_name().length() == 0)
+                    if(dto.getApp_name().length() == 0) {
                         text.setText("설정이 필요합니다!");
+                        count++;
+                        if(count==6) alert();
+                    }
                     else
                         text.setText("설정된 앱 이름 : " + dto.getApp_name());
+
                 }
             }
         }
@@ -122,6 +156,7 @@ public class StealthMain extends AppCompatActivity {
             less = "#52FFFFFF";
         }else if(id==R.id.menu7){
             // 도움말
+            intent = new Intent(StealthMain.this, StealthHelp.class);
             Toast.makeText(this, "도움말 메뉴가 터치되었습니다", Toast.LENGTH_SHORT).show();
             color="Help";
 
