@@ -81,7 +81,7 @@ public class AppInfoActivity extends AppCompatActivity {
                 settingDTO.setApp_name(app_name);
                 settingDTO.setApp_package(app_package);
 
-                settingDAO.update(settingDTO);
+                settingDAO.updateApp(settingDTO);
 
                 Toast.makeText(AppInfoActivity.this, "설정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
 
@@ -89,8 +89,6 @@ public class AppInfoActivity extends AppCompatActivity {
                 //액션은 사용자 정의 액션. manifaests에서 설정해줘야 함.
 
                 String action = "com.stealth.lnk.updatewidget." +colorName ;
-                Log.e("색깔" , colorName);
-                Log.e("action" , action);
                 Intent intent = new Intent(action);
                 sendBroadcast(intent);
 

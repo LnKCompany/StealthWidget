@@ -68,7 +68,7 @@ public class SettingDAO {
         sqlDB.close();
     }
 
-    public void update(SettingDTO dto) {
+    public void updateApp(SettingDTO dto) {
         sqlDB = dbHelper.getWritableDatabase();
         sqlDB.execSQL("update setting set app_name = '" +
                 dto.getApp_name() +
@@ -84,7 +84,7 @@ public class SettingDAO {
         sqlDB = dbHelper.getWritableDatabase();
         sqlDB.execSQL("update setting set opacity = '" +
                 dto.getOpacity() +
-                "', where name = '" +
+                "' where name = '" +
                 dto.getName() +
                 "';");
     }

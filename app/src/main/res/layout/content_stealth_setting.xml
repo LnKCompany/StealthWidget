@@ -18,6 +18,7 @@
         android:text="변경하시려면 버튼을 터치하세요" />
 
     <Button android:id="@+id/app01"
+        android:tag="setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ffffffff"
@@ -25,6 +26,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -36,13 +38,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <Button android:id="@+id/more_trans"
+            <Button
+                android:id="@+id/more_trans"
+                android:tag="more_trans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0%" />
 
 
             <Button
+                android:id="@+id/more_trans_ex"
+                android:tag="more_trans"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="#65768ddf"
@@ -56,13 +62,16 @@
             android:orientation="vertical"
             >
 
-            <Button android:id="@+id/less_trans"
+            <Button
+                android:id="@+id/less_trans"
+                android:tag="less_trans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="50%"
-                android:layout_gravity="right" />
+                android:text="50%" />
 
             <Button
+                android:id="@+id/less_trans_ex"
+                android:tag="less_trans"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="#bd768ddf"
@@ -76,13 +85,17 @@
             android:orientation="vertical"
             >
 
-            <Button android:id="@+id/trans"
+            <Button
+                android:id="@+id/cur_trans"
+                android:tag="cur_trans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100%"
                     />
 
             <Button
+                android:id="@+id/cur_trans_ex"
+                android:tag="cur_trans"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="#bd0037ff"

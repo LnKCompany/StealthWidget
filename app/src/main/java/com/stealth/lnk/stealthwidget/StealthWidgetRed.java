@@ -6,6 +6,9 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.RemoteViews;
 
 import com.stealth.lnk.stealthwidget.DB.DBHelper;
@@ -37,6 +40,7 @@ public class StealthWidgetRed extends AppWidgetProvider {
             Intent intent = null;
 
             RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.stealth_widget_red);
+            remoteView.setInt(R.id.app01, "setBackgroundColor", Color.parseColor(settingDTO.getOpacity()));
 
             if(settingDTO.getApp_name().equals("")) {
                 //앱 설정이 되지 않았을 경우 메인으로 연결
